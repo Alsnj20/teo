@@ -32,10 +32,5 @@
 
 Índice
 
-1. Introducción
-2. Objetivos
-3. Contenidos
-4. Metodología
-5. Evaluación
-6. Bibliografía
+1. [Entrada](./entrada/)
 
