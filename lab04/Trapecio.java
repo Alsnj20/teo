@@ -51,4 +51,46 @@ public class Trapecio {
       return partialSum;
     }
   }
+
+  // Integración del trapecio usando múltiples threads
+  public static double integrateWithThreads(Function f, double a, double b, long n, int numThreads)
+      throws InterruptedException {
+    if (n <= 0)
+      return 0.0;
+    double h = (b - a) / (double) n;
+    // Si n < numThreads, no tiene sentido usar más threads que n
+    int threadsToUse = (int) Math.min(numThreads, n);
+    long base = n / threadsToUse;
+    long rem = n % threadsToUse;
+
+    TrapezoidWorker[] workers = new TrapezoidWorker[threadsToUse];
+    long index = 0;
+    for (int t = 0; t < threadsToUse; t++) {
+      long take = base + (t < rem ? 1 : 0);
+      long start = index;
+      long end = index + take;
+      workers[t] = new TrapezoidWorker(a, h, start, end, f);
+      index = end;
+      workers[t].start();
+    }
+
+    double total = 0.0;
+    for (int t = 0; t < threadsToUse; t++) {
+      workers[t].join();
+      total += workers[t].getPartialSum();
+    }
+    return total;
+  }
+
+  // Verifica si un valor ya ha sido visto, usando un conjunto de hashes
+  private static boolean repeated(double value, Set<Long> seenHashes, double epsilon) {
+    // No podemos comparar doubles exactamente; usamos redondeo a bits mediante
+    // escalado.
+    // Creamos un hash largo redondeando al bucket más cercano definido por epsilon
+    long bucket = Math.round(value / epsilon);
+    if (seenHashes.contains(bucket))
+      return true;
+    seenHashes.add(bucket);
+    return false;
+  }
 }
