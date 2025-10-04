@@ -80,4 +80,56 @@ public class TrapecioPool {
     seenHashes.add(bucket);
     return false;
   }
+
+  public static void main(String[] args) throws InterruptedException, ExecutionException {
+    double a = 2.0;
+    double b = 20.0;
+    long maxN = 200000L;
+    int poolSize = Math.max(1, Runtime.getRuntime().availableProcessors());
+    double epsilon = 1e-12;
+
+    if (args.length >= 2) {
+      a = Double.parseDouble(args[0]);
+      b = Double.parseDouble(args[1]);
+    }
+    if (args.length >= 3) {
+      maxN = Long.parseLong(args[2]);
+    }
+    if (args.length >= 4) {
+      poolSize = Integer.parseInt(args[3]);
+    }
+    if (args.length >= 5) {
+      epsilon = Double.parseDouble(args[4]);
+    }
+
+    Function f = new Quadratic();
+
+    System.out.printf("Integración por trapecio (Thread Pool) sobre [%f, %f]\n", a, b);
+    System.out.printf("Máx n: %d, poolSize: %d, epsilon: %.1e\n", maxN, poolSize, epsilon);
+
+    Set<Long> seen = new HashSet<>();
+    boolean stopped = false;
+
+    for (long n = 1; n <= maxN; n++) {
+      double approx = integrateWithPool(f, a, b, n, poolSize);
+
+      if (n <= 16 || (n <= 1024 && (n & (n - 1)) == 0) || n % 10000 == 0) {
+        System.out.printf("n=%d -> approx=%.15f\n", n, approx);
+      }
+
+      long bucket = Math.round(approx / epsilon);
+      if (seen.contains(bucket)) {
+        System.out.printf("Valor repetido detectado en n=%d (approx=%.15f). Deteniendo.\n", n, approx);
+        stopped = true;
+        break;
+      } else {
+        seen.add(bucket);
+      }
+    }
+
+    if (!stopped) {
+      System.out.println("No se detectó repetición antes de maxN.");
+    }
+    System.out.println("Fin.");
+  }
 }
