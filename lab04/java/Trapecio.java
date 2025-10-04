@@ -1,4 +1,4 @@
-package lab04;
+package lab04.java;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
