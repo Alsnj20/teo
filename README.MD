@@ -31,6 +31,12 @@
 </div>
 
 # Índice
-
 1. [Entrada](./entrada/)
-
+2. [Laboratorio 01](./lab01/)
+3. [Laboratorio 02](./lab02/)
+4. [Laboratorio 03](./lab03/)
+5. [Laboratorio 04](./lab04/)
+6. [Laboratorio 06](./lab06/)
+7. [Laboratorio 07](./lab07/)
+8. [Laboratorio 08](./lab08/)
+9. [Laboratorio 09](./lab09/)
