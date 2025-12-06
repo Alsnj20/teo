@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-cc6f41e142b368d02bdb.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "qtConsole",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "qtConsole::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-qtConsole-Debug-185be8facb916167a090.json",
+					"name" : "qtConsole",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "qtConsole_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-qtConsole_autogen-Debug-530cd1bd34140ef4c62d.json",
+					"name" : "qtConsole_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "qtConsole_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-qtConsole_autogen_timestamp_deps-Debug-903a90d2549bf1dfc12b.json",
+					"name" : "qtConsole_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Ordenador/Semester/LAB_TO/LAB6/PROJECT/qtConsole/build/Desktop_Qt_6_10_0_MinGW_64_bit-Debug",
+		"source" : "C:/Ordenador/Semester/LAB_TO/LAB6/PROJECT/qtConsole"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
